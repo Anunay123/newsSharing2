@@ -9,14 +9,14 @@ import (
 	"newsSharing/src/network"
 )
 
-func GetNewsData(query, page string, newsDataChannel chan *NewsData) {
+func GetNewsData(query, page string, newsDataChannel chan *NewsData, restService network.RestInterface) {
 	queryMap := map[string]string{
 		"q":       query,
 		"api-key": constants.API_KEY_NYTIMES,
 		"page":    page,
 	}
 
-	responseBytes, err, statusCode := network.CallRestService(http.MethodGet, baseUrl, constants.JSON, constants.JSON,
+	responseBytes, err, statusCode := restService.CallRestService(http.MethodGet, baseUrl, constants.JSON, constants.JSON,
 		nil, queryMap, nil, nil, http.Client{})
 
 	if err != nil {

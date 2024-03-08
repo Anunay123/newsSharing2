@@ -8,6 +8,7 @@ import (
 	"newsSharing/src/constants"
 	"newsSharing/src/guardian"
 	"newsSharing/src/logger"
+	"newsSharing/src/network"
 	"newsSharing/src/nyTimes"
 )
 
@@ -15,10 +16,16 @@ func NewsController(ginContext *gin.Context) {
 
 	queryString, page := ginContext.Query(constants.PARAM_SEARCHED_QUERY), ginContext.Query(constants.PARAM_SEARCHED_PAGE)
 
+	if queryString == "" {
+		logger.LoggerUtil.PrintLog(constants.LOG_LEVEL_ERROR, "No query provided")
+		ginContext.Data(http.StatusBadRequest, "application/json; charset=utf-8", []byte(fmt.Sprintf("{\"error\":\"%s\"}", "No query provided")))
+		return
+	}
+
 	guardianChannel, nyTimesChannel := make(chan *guardian.NewsData, 1), make(chan *nyTimes.NewsData, 1)
 
-	go guardian.GetNewsData(queryString, page, guardianChannel)
-	go nyTimes.GetNewsData(queryString, page, nyTimesChannel)
+	go guardian.GetNewsData(queryString, page, guardianChannel, network.CommonRestService)
+	go nyTimes.GetNewsData(queryString, page, nyTimesChannel, network.CommonRestService)
 
 	nyTimesData := <-nyTimesChannel
 	guardianData := <-guardianChannel

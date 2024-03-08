@@ -10,10 +10,18 @@ import (
 )
 
 type RestInterface interface {
+	CallRestService(string, string, string, string, map[string]string, map[string]string, []*http.Cookie, interface{}, http.Client) ([]byte, error, int)
+}
+
+type RestService struct {
+}
+
+func GetRestService() *RestService {
+	return &RestService{}
 }
 
 // CallRestService - Generic function to fetch data from a rest service
-func CallRestService(requestMethod, httpEndPoint, requestType, responseType string,
+func (restService *RestService) CallRestService(requestMethod, httpEndPoint, requestType, responseType string,
 	requestHeaders, queryParams map[string]string, requestCookies []*http.Cookie, body interface{}, client http.Client) ([]byte, error, int) {
 
 	var (

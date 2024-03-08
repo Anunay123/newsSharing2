@@ -7,6 +7,7 @@ import (
 	"newsSharing/src/fetchNews"
 	"newsSharing/src/guardian"
 	"newsSharing/src/logger"
+	"newsSharing/src/network"
 	"newsSharing/src/nyTimes"
 )
 
@@ -15,6 +16,7 @@ func init() {
 	guardian.DoInit()
 	nyTimes.DoInit()
 	logger.DoInit()
+	network.DoInit()
 }
 
 func main() {

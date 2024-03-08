@@ -1,0 +1,20 @@
+{
+  "guardian": {
+    "BASE_URL": "https://content.guardianapis.com/search?",
+    "HYSTRIX": {
+      "COMMAND": "hystrix_guardian",
+      "TIMEOUT_SEC": 1,
+      "MAX_CONC_REQUESTS": 2500,
+      "err_percent_plus_threshold": 25
+    }
+  },
+  "nyTimes": {
+    "BASE_URL": "https://api.nytimes.com/svc/search/v2/articlesearch.json?",
+    "HYSTRIX": {
+      "COMMAND": "hystrix_nyTimes",
+      "TIMEOUT_SEC": 1,
+      "MAX_CONC_REQUESTS": 2500,
+      "err_percent_plus_threshold": 25
+    }
+  }
+}

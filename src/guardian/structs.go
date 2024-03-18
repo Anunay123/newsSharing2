@@ -14,7 +14,6 @@ func (nd *NewsData) GetResponse() *Response {
 	return nil
 }
 
-//Response
 type Response struct {
 	Status      string    `json:"status"`
 	UserTier    string    `json:"userTier"`

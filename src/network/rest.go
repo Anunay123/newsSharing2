@@ -20,7 +20,7 @@ func GetRestService() *RestService {
 	return &RestService{}
 }
 
-// CallRestService - Generic function to fetch data from a rest service
+// CallRestService - Generic function to fetch data from a rest service...
 func (restService *RestService) CallRestService(requestMethod, httpEndPoint, requestType, responseType string,
 	requestHeaders, queryParams map[string]string, requestCookies []*http.Cookie, body interface{}, client http.Client) ([]byte, error, int) {
 

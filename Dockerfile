@@ -1,5 +1,5 @@
 # Start from a minimal Go image
-FROM golang:alpine AS builder
+FROM public.ecr.aws/docker/library/golang:alpine3.19 AS builder
 
 # Set the Current Working Directory inside the container
 WORKDIR /app

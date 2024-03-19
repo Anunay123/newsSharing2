@@ -22,6 +22,10 @@ func NewsController(ginContext *gin.Context) {
 		return
 	}
 
+	if page == "" {
+		page = "1"
+	}
+
 	guardianChannel, nyTimesChannel := make(chan *guardian.NewsData, 1), make(chan *nyTimes.NewsData, 1)
 
 	//async calls

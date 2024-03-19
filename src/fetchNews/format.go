@@ -9,9 +9,9 @@ import (
 func FormatNews(guardianData *guardian.NewsData, nyTimesData *nyTimes.NewsData, page string) *ApiResponse {
 	apiResponse := new(ApiResponse)
 	apiResponse.Heading = "NEWS"
-	apiResponse.PageNumber = guardianData.GetResponse().GetCurrentPage()
+	apiResponse.PageNumber, _ = strconv.Atoi(page)
 	if apiResponse.PageNumber == 0 {
-		apiResponse.PageNumber, _ = strconv.Atoi(page)
+		apiResponse.PageNumber = 1
 	}
 	apiResponse.TotalPages = guardianData.GetResponse().GetPages()
 	apiResponse.Data = make([]*News, 0)
@@ -30,6 +30,10 @@ func FormatNews(guardianData *guardian.NewsData, nyTimesData *nyTimes.NewsData, 
 			Url:       doc.GetWebUrl(),
 			Publisher: "NyTimes",
 		})
+	}
+
+	if len(apiResponse.Data) == 0 {
+		apiResponse.ErrorMessage = "Downstream servers down"
 	}
 
 	return apiResponse

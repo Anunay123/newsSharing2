@@ -6,7 +6,7 @@ const (
 	JSON                 = "json"
 
 	//TODO - To be moved to secret manager
-	API_KEY_GUARDIAN = "443a6aae-cb2c-4465-af1e-345cba365578"
+	API_KEY_GUARDIAN = "92d32eeb-1626-44a5-9bcb-c50a8ce407a3"
 	API_KEY_NYTIMES  = "joSrRFx4DPYagMDdofeDeHQdUAvhGjXl"
 
 	STDOUT_LOGGING = "Stdout"

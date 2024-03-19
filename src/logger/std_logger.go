@@ -6,5 +6,5 @@ type StdLogger struct {
 }
 
 func (stdLogger *StdLogger) PrintLog(level string, message string) {
-	fmt.Println("Level: %s, Message: %s", level, message)
+	fmt.Printf("Level: %s, Message: %s", level, message)
 }
